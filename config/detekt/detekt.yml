@@ -1,0 +1,85 @@
+build:
+  maxIssues: 0
+  excludeCorrectable: false
+  weights:
+    complexity: 2
+    LongParameterList: 1
+    style: 1
+
+processors:
+  active: true
+
+console-reports:
+  active: true
+
+output-reports:
+  active: true
+
+style:
+  MagicNumber:
+    active: false
+
+  WildcardImport:
+    active: false
+
+  MaxLineLength:
+    active: true
+    maxLineLength: 120
+
+  ReturnCount:
+    active: true
+    max: 3
+    excludedFunctions:
+      - equals
+      - hashCode
+
+  ForbiddenComment:
+    active: true
+    values:
+      - TODO
+      - FIXME
+    allowedPatterns: "TODO\\([A-Z]+-\\d+\\)"
+
+  NewLineAtEndOfFile:
+    active: true
+
+complexity:
+  LongMethod:
+    active: true
+    threshold: 60
+
+  LargeClass:
+    active: true
+    threshold: 600
+
+  LongParameterList:
+    active: true
+    functionThreshold: 8
+    constructorThreshold: 10
+
+  TooManyFunctions:
+    active: true
+    thresholdInFiles: 15
+    thresholdInClasses: 15
+    thresholdInInterfaces: 10
+    thresholdInObjects: 15
+
+naming:
+  FunctionNaming:
+    active: true
+    ignoreAnnotated:
+      - Composable
+
+  VariableNaming:
+    active: true
+    excludeClassPattern: "$Companion$"
+
+performance:
+  SpreadOperator:
+    active: false
+
+potential-bugs:
+  LateinitUsage:
+    active: true
+    excludeAnnotatedProperties:
+      - Inject

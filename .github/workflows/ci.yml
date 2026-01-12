@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - "**"
+  pull_request:
+    branches:
+      - "**"
+
+jobs:
+  build:
+    name: Build & Quality Checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Gradle cache
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Build
+        run: ./gradlew assembleDebug --no-daemon
+
+      - name: Run unit tests
+        run: ./gradlew testDebugUnitTest --no-daemon
+
+      - name: Spotless check
+        run: ./gradlew spotlessCheck --no-daemon
+
+      - name: Run Detekt
+        run: ./gradlew detekt --no-daemon
+
+      - name: Run Android Lint
+        run: ./gradlew lintDebug --no-daemon
+
+      - name: Generate coverage report
+        run: ./gradlew koverHtmlReport koverXmlReport --no-daemon
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: kover-report
+          path: |
+            **/build/reports/kover/**
+
