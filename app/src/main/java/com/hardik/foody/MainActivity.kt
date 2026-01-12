@@ -14,6 +14,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.hardik.foody.ui.theme.FoodyTheme
 
 class MainActivity : ComponentActivity() {
+    /**
+     * Initializes the activity, enables edge-to-edge display, and sets the Compose UI content.
+     *
+     * The content applies FoodyTheme and places a full-screen Scaffold that renders the Greeting
+     * composable.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -30,6 +36,11 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+/**
+ * Displays a greeting text "Hello <name>!".
+ *
+ * @param name The name to show in the greeting.
+ * @param modifier Modifier to apply to the Text composable. */
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(
@@ -38,6 +49,11 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     )
 }
 
+/**
+ * Shows a preview of the Greeting composable wrapped in the app theme.
+ *
+ * This function renders the Greeting composable with the name "Android" for IDE previews.
+ */
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
