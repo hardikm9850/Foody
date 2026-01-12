@@ -32,6 +32,17 @@ private val LightColorScheme = lightColorScheme(
      */
 )
 
+/**
+ * Applies the app's Material 3 theme to the given composable content.
+ *
+ * Chooses a color scheme based on the `darkTheme` flag and `dynamicColor` availability:
+ * when `dynamicColor` is enabled and supported by the platform (Android 12 / API 31+), a
+ * dynamic color scheme is used; otherwise the predefined light or dark color scheme is applied.
+ *
+ * @param darkTheme If `true`, the dark color scheme will be used; defaults to the system dark theme setting.
+ * @param dynamicColor If `true`, enable platform dynamic color when available (Android 12 / API 31+).
+ * @param content Composable content that will be rendered using the selected theme.
+ */
 @Composable
 fun FoodyTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
