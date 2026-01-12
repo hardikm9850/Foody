@@ -93,3 +93,9 @@ spotless {
         endWithNewline()
     }
 }
+// used to enable dependency locking for all resolvable dependency configurations within a project.
+// This ensures that every build uses the exact same version of each dependency,
+// leading to reproducible and consistent builds across different machines and environments.
+dependencyLocking {
+    lockAllConfigurations()
+}
