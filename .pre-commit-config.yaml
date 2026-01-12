@@ -1,0 +1,30 @@
+repos:
+  # Ktlint check via Gradle
+  - repo: local
+    hooks:
+      - id: ktlint
+        name: Ktlint Check
+        entry: ./gradlew ktlintCheck
+        language: system
+        pass_filenames: false
+        files: \.kt$
+
+  # Spotless formatting (auto-fix)
+  - repo: local
+    hooks:
+      - id: spotless-apply
+        name: Spotless Apply
+        entry: ./gradlew spotlessApply
+        language: system
+        pass_filenames: false
+        files: \.(kt|kts)$
+
+  # Detekt static analysis
+  - repo: local
+    hooks:
+      - id: detekt
+        name: Detekt
+        entry: ./gradlew detekt
+        language: system
+        pass_filenames: false
+        files: \.kt$
