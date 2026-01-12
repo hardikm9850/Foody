@@ -15,7 +15,8 @@ subprojects {
 }
 
 detekt {
-    toolVersion = libs.versions.detekt.toString()
+    toolVersion = libs.versions.detekt.get()
+    config.setFrom(files("$rootDir/config/detekt/detekt.yml"))
     config.setFrom(files("$rootDir/config/detekt/detekt.yml"))
     buildUponDefaultConfig = true
     parallel = true
