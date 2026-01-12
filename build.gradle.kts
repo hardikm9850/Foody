@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.kotlin.compose) apply false
     alias(libs.plugins.detekt) apply true
     alias(libs.plugins.kover)
+    alias(libs.plugins.spotless)
 }
 
 subprojects {
@@ -44,13 +45,35 @@ kover {
                     "*Hilt*",
                     "*_Factory*",
                     "*_MembersInjector*",
-                    "*Companion*"
+                    "*Companion*",
                 )
                 packages(
                     "*.di",
-                    "*.generated"
+                    "*.generated",
                 )
             }
         }
+    }
+}
+
+spotless {
+    kotlin {
+        target("**/*.kt")
+        ktlint(libs.versions.ktlint.get())
+            .editorConfigOverride(
+                mapOf(
+                    "ktlint_function_naming_ignore_when_annotated_with" to
+                        "Composable,androidx.compose.runtime.Composable",
+                ),
+            )
+        trimTrailingWhitespace()
+        endWithNewline()
+    }
+
+    kotlinGradle {
+        target("**/*.kts")
+        ktlint(libs.versions.ktlint.get())
+        trimTrailingWhitespace()
+        endWithNewline()
     }
 }

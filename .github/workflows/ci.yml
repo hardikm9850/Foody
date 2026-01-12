@@ -35,6 +35,9 @@ jobs:
       - name: Run unit tests
         run: ./gradlew testDebugUnitTest --no-daemon
 
+      - name: Spotless check
+        run: ./gradlew spotlessCheck --no-daemon
+
       - name: Run Detekt
         run: ./gradlew detekt --no-daemon
 
@@ -50,4 +53,4 @@ jobs:
           name: jacoco-report
           path: |
             **/build/reports/kover/**
-        
+
