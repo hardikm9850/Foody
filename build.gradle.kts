@@ -30,6 +30,22 @@ kover {
     useJacoco()
 
     reports {
+        verify {
+            /*
+            // TODO enable the minimum code coverage threshold
+            rule {
+                bound {
+                    minValue = 80
+                    coverageUnits = CoverageUnit.BRANCH
+                }
+
+                bound {
+                    minValue = 80
+                    coverageUnits = CoverageUnit.LINE
+                }
+            }
+             */
+        }
         total {
             html {
                 onCheck.set(true)
